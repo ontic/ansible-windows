@@ -6,7 +6,7 @@ This repository provides a shell provisioning script to bootstrap Ansible from w
 
 ## Example
 
-```yml
+```ruby
 Vagrant.configure("2") do |config|
   
   config.vm.define "web" do |server|
