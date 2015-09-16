@@ -1,0 +1,7 @@
+# IDE
+/.cache/
+/.externalToolBuilders/
+/.idea/
+/.settings/
+/.buildpath
+/.project
