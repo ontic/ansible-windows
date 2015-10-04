@@ -1,4 +1,4 @@
-# Ansible Windows ![Status](https://img.shields.io/badge/project-maintained-green.svg)
+# Ansible Windows ![Status](https://img.shields.io/badge/project-maintained-brightgreen.svg)
 
 ## Introduction
 
