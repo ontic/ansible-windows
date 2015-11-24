@@ -35,25 +35,37 @@ if [ ! -f /vagrant/$INVENTORY_FILE ]; then
 fi
 
 if ! command -v ansible >/dev/null; then
+	
+	echo "Installing Ansible dependencies and Git."
+	
 	if [ ! -z "$IS_REDHAT" ]; then
-		echo "Your operating system is not supported yet."
-		exit 1
+		yum install -y git python python-devel
 	elif [ ! -z "$IS_DEBIAN" ]; then
-		echo "Updating apt cache"
-        apt-get update -y
-		echo "Installing common software"
-		apt-get install -y software-properties-common
-		echo "Adding Git and Ansible repositories"
-		apt-add-repository -y ppa:git-core/ppa
-		apt-add-repository -y ppa:ansible/ansible
-		echo "Downloading the latest packages"
-        apt-get update -y
-        echo "Installing Git and Ansible"
-		apt-get install -y git ansible
+		apt-get update -y
+		apt-get install -y git python python-dev
 	else
 		echo "Your operating system is not supported."
 		exit 1
 	fi
+	
+	echo "Installing pip via easy_install."
+	wget https://raw.githubusercontent.com/ActiveState/ez_setup/v0.9/ez_setup.py
+	python ez_setup.py && rm -f ez_setup.py
+	easy_install pip
+	pip install setuptools --no-use-wheel --upgrade
+	
+	if [ ! -z "$IS_REDHAT" ]; then
+		yum install -y gcc
+	else
+		apt-get install -y build-essential
+	fi
+	
+	echo "Installing required python modules."
+	pip install paramiko pyyaml jinja2 markupsafe
+	
+	echo "Installing Ansible."
+	pip install ansible
+	
 fi
 
 echo "Installing Ansible roles from requirements file, if available."
