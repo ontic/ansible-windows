@@ -47,7 +47,7 @@ end
 ## Contributors
 
 Below lists all individuals having contributed to the repository. If you would like to get involved, we encourage
-you to so by making a [pull](../../pulls) request or submitting an [issue](../../issues).
+you to do so by making a [pull](../../pulls) request or submitting an [issue](../../issues).
 
 * [Adam Dyson](https://github.com/adamdyson)
 
